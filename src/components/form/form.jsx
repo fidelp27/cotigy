@@ -11,10 +11,15 @@ const FormCalculate = ({ setDatos }) => {
   const errores = {
     required: "Este campo es requerido",
     tipoAlquiler: "Debes seleccionar el tipo de alquiler",
-    positivo: "No puede ser negativo",
+
+    años: "El tiempo mínimo es un año",
+    uno: "",
+    alquiler: "El mínimo es 1",
+    positivo: "Si no hay expensas, por favor coloque cero",
+
   };
   const validationSchema = Yup.object().shape({
-    alquiler: Yup.number().required(errores.required).min(0, errores.positivo),
+    alquiler: Yup.number().required(errores.required).min(1, errores.alquiler),
     expensas: Yup.number().required(errores.required).min(0, errores.positivo),
     años: Yup.number().required(errores.required).min(0, errores.positivo),
     tipo_alquiler: Yup.string().required(errores.required),
@@ -22,6 +27,7 @@ const FormCalculate = ({ setDatos }) => {
     porcentajeAjuste: Yup.number().min(0, errores.positivo),
     promo: Yup.string().required(errores.required),
     asesor: Yup.string().required(errores.required),
+    uno: Yup.bool().isTrue(true),
   });
   return (
     <>
@@ -168,22 +174,83 @@ const FormCalculate = ({ setDatos }) => {
               component={() => <div className="error">{errors.promo} </div>}
             />
 
-            <div className="input-group">
-              <label htmlFor="asesor" className="label">
-                Asesor
-              </label>
-              <Field as="select" name="asesor" className="input">
-                <option value="">Escoge tu nombre</option>
-                {React.Children.toArray(
-                  asesores.map((asesores) => {
-                    return (
-                      <option value={asesores.nombre}>
-                        {asesores.nombre.toUpperCase()}
-                      </option>
-                    );
-                  })
+
+                <div className="input-group">
+                  <label htmlFor="asesor" className="label">
+                    Asesor
+                  </label>
+                  <Field as="select" name="asesor" className="input">
+                    <option value="">Escoge tu nombre</option>
+                    {React.Children.toArray(
+                      asesores.sort().map((asesores) => {
+                        return (
+                          <option value={asesores.nombre}>
+                            {asesores.nombre.toUpperCase()}
+                          </option>
+                        );
+                      })
+                    )}
+                  </Field>
+                </div>
+                <ErrorMessage
+                  name="asesor"
+                  component={() => (
+                    <div className="error">{errors.asesor} </div>
+                  )}
+                />
+                {values.asesor && (
+                  <div className="show-cuotas">
+                    <fieldset className="fieldset">
+                      <legend className="legend">Cuotas a mostrar</legend>
+                      <FormControlLabel
+                        control={
+                          <Switch
+                            value={values.uno}
+                            name="uno"
+                            onChange={handleChange}
+                            color="secondary"
+                            size="small"
+                          />
+                        }
+                        className={errors.uno && "switch-cuotas error-uno"}
+                        label="1 cuota"
+                      />
+
+                      <FormControlLabel
+                        control={
+                          <Switch
+                            value={values.tres}
+                            name="tres"
+                            onChange={handleChange}
+                            color="secondary"
+                            size="small"
+                          />
+                        }
+                        className="switch-cuotas"
+                        label="3 cuotas"
+                      />
+                      <FormControlLabel
+                        control={
+                          <Switch
+                            value={values.seis}
+                            name="seis"
+                            onChange={handleChange}
+                            color="secondary"
+                            size="small"
+                          />
+                        }
+                        className="switch-cuotas"
+                        label="6 cuotas"
+                      />
+                    </fieldset>
+                  </div>
                 )}
-              </Field>
+
+                <button type="submit" className="btn">
+                  Calcular
+                </button>
+              </Form>
+
             </div>
             <ErrorMessage
               name="asesor"
