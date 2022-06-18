@@ -54,6 +54,7 @@ export const promociones = [
     tresPagos: 0.15,
     seisPagos: 0.1,
   },
+
   {
     nombre: "RESPALDAR",
     unPago: 0.3,
@@ -72,18 +73,19 @@ export const promociones = [
     tresPagos: 0.1,
     seisPagos: 0.05,
   },
+
 ];
 
 export const asesores = [
   {
     nombre: "Ana Carolina Jara Pernia",
     email: "ana@garantiaya.com.ar",
-    cargo: "Asesora Comercial",
+    cargo: "Asesor Comercial",
   },
   {
     nombre: "Angeles Torres",
     email: "angeles@garantiaya.com.ar",
-    cargo: "Asesora Comercial",
+    cargo: "Asesor Comercial",
   },
   {
     nombre: "Federico Peyras",
@@ -98,22 +100,22 @@ export const asesores = [
   {
     nombre: "Giuliana Ramirez",
     email: "giuliana@garantiaya.com.ar",
-    cargo: "Asesora Comercial",
+    cargo: "Asesor Comercial",
   },
   {
     nombre: "Josenna Di Lorenzo",
     email: "josenna@garantiaya.com.ar",
-    cargo: "Asesora Comercial",
+    cargo: "Asesor Comercial",
   },
   {
     nombre: "Marialis Fuenmayor",
     email: "marialis@garantiaya.com.ar",
-    cargo: "Asesora Comercial",
+    cargo: "Asesor Comercial",
   },
   {
     nombre: "Paz Ramos",
     email: "paz@garantiaya.com.ar",
-    cargo: "Asesora Comercial",
+    cargo: "Asesor Comercial",
   },
   {
     nombre: "Nelson Sambrano",
@@ -123,6 +125,6 @@ export const asesores = [
   {
     nombre: "Valentina Aguilera",
     email: "valentina@garantiaya.com.ar",
-    cargo: "Asesora Comercial",
+    cargo: "Asesor Comercial",
   },
 ];

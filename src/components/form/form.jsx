@@ -5,22 +5,23 @@ import "./form.css";
 import { tipoAlquiler, tipoAjuste, asesores, promociones } from "../../data";
 import { FormControlLabel, Switch } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import Header from "../header/header";
 
-const FormCalculate = ({ setDatos, setLoading, setTiempo }) => {
+const FormCalculate = ({ setDatos }) => {
   const navigate = useNavigate();
   const errores = {
     required: "Este campo es requerido",
     tipoAlquiler: "Debes seleccionar el tipo de alquiler",
+
     años: "El tiempo mínimo es un año",
     uno: "",
     alquiler: "El mínimo es 1",
     positivo: "Si no hay expensas, por favor coloque cero",
+
   };
   const validationSchema = Yup.object().shape({
     alquiler: Yup.number().required(errores.required).min(1, errores.alquiler),
     expensas: Yup.number().required(errores.required).min(0, errores.positivo),
-    años: Yup.number().required(errores.required).min(1, errores.años),
+    años: Yup.number().required(errores.required).min(0, errores.positivo),
     tipo_alquiler: Yup.string().required(errores.required),
     tipoAjuste: Yup.string(),
     porcentajeAjuste: Yup.number().min(0, errores.positivo),
@@ -60,17 +61,18 @@ const FormCalculate = ({ setDatos, setLoading, setTiempo }) => {
             <div className="container-form">
               <Form className="form">
                 <h1>Cotizador</h1>
+
                 <div className="input-group">
-                  <label htmlFor="tipo_alquiler" className="label">
-                    Tipo de Alquiler
+                  <label htmlFor="tipoAjuste" className="label">
+                    Tipo de Ajuste
                   </label>
-                  <Field as="select" name="tipo_alquiler" className="input">
-                    <option value="">Elige el tipo de alquiler</option>
+                  <Field as="select" name="tipoAjuste" className="input-ajuste">
+                    <option value="">Escoge un tipo de ajuste</option>
                     {React.Children.toArray(
-                      tipoAlquiler.map((alquiler) => {
+                      tipoAjuste.map((ajuste) => {
                         return (
-                          <option value={alquiler}>
-                            {alquiler.toUpperCase()}
+                          <option value={ajuste.nombre}>
+                            {ajuste.nombre.toUpperCase()}
                           </option>
                         );
                       })
@@ -78,143 +80,100 @@ const FormCalculate = ({ setDatos, setLoading, setTiempo }) => {
                   </Field>
                 </div>
                 <ErrorMessage
-                  name="tipo_alquiler"
+                  name="tipoAjuste"
                   component={() => (
-                    <div className="error">{errors.tipo_alquiler} </div>
+                    <div className="error">{errors.tipoAjuste} </div>
                   )}
                 />
-                {values.tipo_alquiler === "comercial" && (
-                  <div className="group-comercial">
-                    <div className="input-group">
-                      <label htmlFor="tipoAjuste" className="label">
-                        Tipo de Ajuste
-                      </label>
-                      <Field
-                        as="select"
-                        name="tipoAjuste"
-                        className="input-ajuste"
-                      >
-                        <option value="">Escoge un tipo de ajuste</option>
-                        {React.Children.toArray(
-                          tipoAjuste.map((ajuste) => {
-                            return (
-                              <option value={ajuste.nombre}>
-                                {ajuste.nombre.toUpperCase()}
-                              </option>
-                            );
-                          })
-                        )}
-                      </Field>
-                    </div>
-                    <ErrorMessage
-                      name="tipoAjuste"
-                      component={() => (
-                        <div className="error">{errors.tipoAjuste} </div>
-                      )}
-                    />
-
-                    <div className="porcentaje-switch">
-                      <div className="input-group">
-                        <label htmlFor="porcentajeAjuste" className="label">
-                          Ajuste
-                        </label>
-                        <Field
-                          type="number"
-                          name="porcentajeAjuste"
-                          className="input-ajuste-porcentaje"
-                          min="0"
-                        />
-                      </div>
-
-                      <FormControlLabel
-                        control={
-                          <Switch
-                            value={values.switch}
-                            name="iva"
-                            onChange={handleChange}
-                            color="secondary"
-                            size="small"
-                          />
-                        }
-                        className="switch"
-                        label="IVA"
-                      />
-                    </div>
-                    <ErrorMessage
+                <div className="porcentaje-switch">
+                  <div className="input-group">
+                    <label htmlFor="porcentajeAjuste" className="label">
+                      Ajuste
+                    </label>
+                    <Field
+                      type="number"
                       name="porcentajeAjuste"
-                      component={() => (
-                        <div className="error">{errors.porcentajeAjuste} </div>
-                      )}
+                      className="input-ajuste-porcentaje"
+                      min="0"
                     />
                   </div>
+
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        value={values.switch}
+                        name="iva"
+                        onChange={handleChange}
+                        color="secondary"
+                        size="small"
+                      />
+                    }
+                    className="switch"
+                    label="IVA"
+                  />
+                </div>
+                <ErrorMessage
+                  name="porcentajeAjuste"
+                  component={() => (
+                    <div className="error">{errors.porcentajeAjuste} </div>
+                  )}
+                />
+              </div>
+            )}
+            <div className="input-group">
+              <label htmlFor="alquiler" className="label">
+                Alquiler
+              </label>
+              <Field type="number" name="alquiler" className="input" min="0" />
+            </div>
+            <ErrorMessage
+              name="alquiler"
+              component={() => <div className="error">{errors.alquiler} </div>}
+            />
+            <div className="input-group">
+              <label htmlFor="expensas" className="label">
+                Expensas
+              </label>
+              <Field type="number" name="expensas" className="input" min="0" />
+            </div>
+            <ErrorMessage
+              name="expensas"
+              component={() => <div className="error">{errors.expensas} </div>}
+            />
+
+            <div className="input-group">
+              <label htmlFor="años" className="label">
+                Años
+              </label>
+              <Field type="number" name="años" className="input" min="0" />
+            </div>
+            <ErrorMessage
+              name="expensas"
+              component={() => <div className="error">{errors.años} </div>}
+            />
+
+            <div className="input-group">
+              <label htmlFor="promo" className="label">
+                Promoción
+              </label>
+              <Field as="select" name="promo" className="input">
+                <option value="">Escoge la promoción</option>
+                {React.Children.toArray(
+                  promociones.map((promo) => {
+                    return (
+                      <option value={promo.nombre}>
+                        {promo.nombre.toUpperCase()}
+                      </option>
+                    );
+                  })
                 )}
-                <div className="input-group">
-                  <label htmlFor="alquiler" className="label">
-                    Alquiler
-                  </label>
-                  <Field
-                    type="number"
-                    name="alquiler"
-                    className="input"
-                    min="0"
-                  />
-                </div>
-                <ErrorMessage
-                  name="alquiler"
-                  component={() => (
-                    <div className="error">{errors.alquiler} </div>
-                  )}
-                />
-                <div className="input-group">
-                  <label htmlFor="expensas" className="label">
-                    Expensas
-                  </label>
-                  <Field
-                    type="number"
-                    name="expensas"
-                    className="input"
-                    min="0"
-                  />
-                </div>
-                <ErrorMessage
-                  name="expensas"
-                  component={() => (
-                    <div className="error">{errors.expensas} </div>
-                  )}
-                />
+              </Field>
+            </div>
+            <ErrorMessage
+              name="promo"
+              component={() => <div className="error">{errors.promo} </div>}
+            />
 
-                <div className="input-group">
-                  <label htmlFor="años" className="label">
-                    Años
-                  </label>
-                  <Field type="number" name="años" className="input" min="0" />
-                </div>
-                <ErrorMessage
-                  name="años"
-                  component={() => <div className="error">{errors.años} </div>}
-                />
-
-                <div className="input-group">
-                  <label htmlFor="promo" className="label">
-                    Promoción
-                  </label>
-                  <Field as="select" name="promo" className="input">
-                    <option value="">Escoge la promoción</option>
-                    {React.Children.toArray(
-                      promociones.map((promo) => {
-                        return (
-                          <option value={promo.nombre}>
-                            {promo.nombre.toUpperCase()}
-                          </option>
-                        );
-                      })
-                    )}
-                  </Field>
-                </div>
-                <ErrorMessage
-                  name="promo"
-                  component={() => <div className="error">{errors.promo} </div>}
-                />
 
                 <div className="input-group">
                   <label htmlFor="asesor" className="label">
@@ -291,11 +250,20 @@ const FormCalculate = ({ setDatos, setLoading, setTiempo }) => {
                   Calcular
                 </button>
               </Form>
+
             </div>
-          );
-        }}
-      </Formik>
-    </>
+            <ErrorMessage
+              name="asesor"
+              component={() => <div className="error">{errors.asesor} </div>}
+            />
+
+            <button type="submit" className="btn">
+              Calcular
+            </button>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 };
 

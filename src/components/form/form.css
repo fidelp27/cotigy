@@ -1,24 +1,10 @@
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-input[type=number]{
-    -moz-appearance: textfield;
-}
-.container-form{
-    width: 100vw;
-    height: 75vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 .form{
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     width: 450px;
+
     margin: 0 auto;
     border-radius: .5rem;
     background-color: rgba(255, 255, 255, 0.251);
@@ -29,25 +15,29 @@ input[type=number]{
     text-align: center;
     background-color: blue;
     border-radius: .5rem .5rem 0 0;
+
     text-align: center;
     color: azure;
     letter-spacing: 2px;    
+
 }
 .form .input-group{
     display: flex;  
     align-items: center;
-    justify-content: center;
     padding: .5rem;
 }
 .input-group input,.input-group select{
-    padding: 0.5rem 0;
+    padding: 0.4rem 0;
     border: 1px solid rgba(70, 69, 69, 0.292);
+
     border-radius: .5rem;
+
 
 }
 .group-comercial{
     display: flex;
     flex-direction: column;
+
     justify-content: center;
 
 }
@@ -56,6 +46,7 @@ input[type=number]{
     text-align: left;
     font-weight: 700;
     letter-spacing: 1px;
+
 
 }
 .input{
@@ -73,22 +64,23 @@ input[type=number]{
     width: 200px;
 }
 .switch{
-    width: 115px;
+    width: 200px;
 }
 .porcentaje-switch{
     display: flex;
-    justify-content: center;
 }
 
 .error{
     width: 100%;
-    font-size: .9rem;
+    font-size: .8rem;
     color: red;
+
     font-weight: bold;
     text-align: center;
+
 }
 .btn{
-    padding: .8rem;
+    padding: .5rem;
     margin-top: 0.5rem;
     border-radius: 0 0 .5rem .5rem;
     border: none;
@@ -126,3 +118,4 @@ input[type=number]{
     background-color: red;
     border-radius: 1rem;
 }
+
