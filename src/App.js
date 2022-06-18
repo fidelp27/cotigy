@@ -71,9 +71,14 @@ const App = () => {
           loading ? <button>loading</button> : <button>Download</button>
         }
       </PDFDownloadLink>
-      <Routes>
-        <Route path="/" element={<FormCalculate setDatos={setDatos} />} />
-        <Route path="/template" element={<PDFFile cost={cost} />} />
+
+        <Route
+          path="/"
+          element={<FormCalculate setDatos={setDatos} datos={datos} />}
+        />
+        <Route path="/template" element={<PDFFile />} />
+        <Route path="*" element={<Error404 />} />
+
       </Routes>
     </div>
   );

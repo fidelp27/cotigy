@@ -24,54 +24,38 @@ const FormCalculate = ({ setDatos }) => {
     asesor: Yup.string().required(errores.required),
   });
   return (
-    <Formik
-      initialValues={{
-        alquiler: "",
-        expensas: "",
-        años: "",
-        tipo_alquiler: "",
-        tipoAjuste: "",
-        porcentajeAjuste: "",
-        promo: "",
-        asesor: "",
-        iva: false,
-      }}
-      validationSchema={validationSchema}
-      onSubmit={(values, { resetForm }) => {
-        localStorage.clear();
-        localStorage.setItem("datos", JSON.stringify(values));
-        setDatos(values);
-        navigate("/template");
-        resetForm();
-      }}
-    >
-      {({ errors, values, handleChange }) => {
-        return (
-          <Form className="form">
-            <h1>Cotizador</h1>
-            <div className="input-group">
-              <label htmlFor="tipo_alquiler" className="label">
-                Tipo de Alquiler
-              </label>
-              <Field as="select" name="tipo_alquiler" className="input">
-                <option value="">Elige el tipo de alquiler</option>
-                {React.Children.toArray(
-                  tipoAlquiler.map((alquiler) => {
-                    return (
-                      <option value={alquiler}>{alquiler.toUpperCase()}</option>
-                    );
-                  })
-                )}
-              </Field>
-            </div>
-            <ErrorMessage
-              name="tipo_alquiler"
-              component={() => (
-                <div className="error">{errors.tipo_alquiler} </div>
-              )}
-            />
-            {values.tipo_alquiler === "comercial" && (
-              <div className="group-comercial">
+    <>
+      <Header />
+      <Formik
+        initialValues={{
+          alquiler: "",
+          expensas: "",
+          años: "",
+          tipo_alquiler: "",
+          tipoAjuste: "",
+          porcentajeAjuste: "",
+          promo: "",
+          asesor: "",
+          iva: false,
+          uno: false,
+          tres: false,
+          seis: false,
+        }}
+        validationSchema={validationSchema}
+        onSubmit={(values, { resetForm }) => {
+          localStorage.clear();
+          localStorage.setItem("datos", JSON.stringify(values));
+          setDatos(values);
+          navigate("/template");
+          resetForm();
+        }}
+      >
+        {({ errors, values, handleChange }) => {
+          return (
+            <div className="container-form">
+              <Form className="form">
+                <h1>Cotizador</h1>
+
                 <div className="input-group">
                   <label htmlFor="tipoAjuste" className="label">
                     Tipo de Ajuste
