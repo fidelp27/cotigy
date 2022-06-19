@@ -1,3 +1,13 @@
+# App Cotizador de garantías de alquiler / PDF
+
+## Diferentes cálculos en base a promociones
+## Personalización del emisor
+## Exportación a  PDF 
+
+# Aplicación en donde se usa React-pdf para exportar documentos a PDF. 
+# Se usa Formik y Yup para validar formularios 
+# Material UI (mui) para Switch 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
