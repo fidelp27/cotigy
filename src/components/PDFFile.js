@@ -343,13 +343,21 @@ const PDFFile = () => {
   }, [alquiler, average, porcentajeAjuste, tiempo, tipo_alquiler]);
 
   useEffect(() => {
-    if (iva === false && promo === "Garantía Especial") {
+    if (
+      iva === false &&
+      (promo === "Garantía Especial" ||
+        promo === "Garantía Especial Estudiantes")
+    ) {
       setComercialCost(
-        Math.ceil((average + expensas) * (años * 12) * 0.06) + alquiler
+        Math.ceil((average + expensas + alquiler) * (años * 12) * 0.06)
       );
-    } else if (iva === true && promo === "Garantía Especial") {
+    } else if (
+      iva === true &&
+      (promo === "Garantía Especial" ||
+        promo === "Garantía Especial Estudiantes")
+    ) {
       setComercialCost(
-        Math.ceil((average + expensas) * (años * 12) * 0.06 * 1.21 + alquiler)
+        Math.ceil((average + expensas + alquiler) * (años * 12) * 0.06 * 1.21)
       );
     } else if (iva === true && años === 1) {
       setComercialCost(Math.ceil((average + expensas) * 1.3 * 1.21));
@@ -365,8 +373,12 @@ const PDFFile = () => {
   }, [alquiler, average, años, expensas, iva, promo]);
 
   useEffect(() => {
-    if (tipo_alquiler === "vivienda" && promo === "Garantía Especial") {
-      setCost(Math.ceil((alquiler + expensas) * (años * 12) * 0.06) + alquiler);
+    if (
+      tipo_alquiler === "vivienda" &&
+      (promo === "Garantía Especial" ||
+        promo === "Garantía Especial Estudiantes")
+    ) {
+      setCost(Math.ceil((alquiler + expensas + alquiler) * (años * 12) * 0.06));
     } else if (tipo_alquiler === "vivienda" && años === 1) {
       setCost(Math.ceil((alquiler + expensas) * 1.3));
     } else if (tipo_alquiler === "vivienda") {
@@ -391,6 +403,7 @@ const PDFFile = () => {
       >
         Nueva cotización
       </button>
+      {}
       <PDFViewer style={styles.pdfViewer}>
         <Document title="Cotización de garantía">
           <Page style={styles.body} size="A4">
