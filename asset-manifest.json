@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/cotigy/static/css/main.b9709e3c.chunk.css",
-    "main.js": "/cotigy/static/js/main.42699691.chunk.js",
-    "main.js.map": "/cotigy/static/js/main.42699691.chunk.js.map",
+    "main.css": "/cotigy/static/css/main.d857ef6d.chunk.css",
+    "main.js": "/cotigy/static/js/main.d344170b.chunk.js",
+    "main.js.map": "/cotigy/static/js/main.d344170b.chunk.js.map",
     "runtime-main.js": "/cotigy/static/js/runtime-main.7000e59e.js",
     "runtime-main.js.map": "/cotigy/static/js/runtime-main.7000e59e.js.map",
     "static/js/2.809b0433.chunk.js": "/cotigy/static/js/2.809b0433.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.4b10661a.chunk.js": "/cotigy/static/js/3.4b10661a.chunk.js",
     "static/js/3.4b10661a.chunk.js.map": "/cotigy/static/js/3.4b10661a.chunk.js.map",
     "index.html": "/cotigy/index.html",
-    "static/css/main.b9709e3c.chunk.css.map": "/cotigy/static/css/main.b9709e3c.chunk.css.map",
+    "static/css/main.d857ef6d.chunk.css.map": "/cotigy/static/css/main.d857ef6d.chunk.css.map",
     "static/js/2.809b0433.chunk.js.LICENSE.txt": "/cotigy/static/js/2.809b0433.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.7000e59e.js",
     "static/js/2.809b0433.chunk.js",
-    "static/css/main.b9709e3c.chunk.css",
-    "static/js/main.42699691.chunk.js"
+    "static/css/main.d857ef6d.chunk.css",
+    "static/js/main.d344170b.chunk.js"
   ]
 }
