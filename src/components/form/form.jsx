@@ -1,22 +1,22 @@
-import React from "react";
-import { Field, Form, Formik, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import "./form.css";
-import { tipoAlquiler, tipoAjuste, asesores, promociones } from "../../data";
-import { FormControlLabel, Switch } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import Header from "../header/header";
+import React from 'react';
+import { Field, Form, Formik, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import './form.css';
+import { tipoAlquiler, tipoAjuste, asesores, promociones } from '../../data';
+import { FormControlLabel, Switch } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import Header from '../header/header';
 
 const FormCalculate = ({ setDatos, setLoading, setTiempo }) => {
   const navigate = useNavigate();
   const errores = {
-    required: "Este campo es requerido",
-    tipoAlquiler: "Debes seleccionar el tipo de alquiler",
-    años: "El tiempo mínimo es un año",
-    uno: "",
-    ml: "",
-    alquiler: "El mínimo es 1",
-    positivo: "Si no hay expensas, por favor coloque cero",
+    required: 'Este campo es requerido',
+    tipoAlquiler: 'Debes seleccionar el tipo de alquiler',
+    años: 'El tiempo mínimo es un año',
+    uno: '',
+    ml: '',
+    alquiler: 'El mínimo es 1',
+    positivo: 'Si no hay expensas, por favor coloque cero',
   };
   const validationSchema = Yup.object().shape({
     alquiler: Yup.number().required(errores.required).min(1, errores.alquiler),
@@ -28,9 +28,9 @@ const FormCalculate = ({ setDatos, setLoading, setTiempo }) => {
     promo: Yup.string().required(errores.required),
     asesor: Yup.string().required(errores.required),
     ml: Yup.bool(),
-    uno: Yup.bool().when("ml", {
-      is: "false",
-      then: Yup.bool().required("Es requerido"),
+    uno: Yup.bool().when('ml', {
+      is: 'false',
+      then: Yup.bool().required('Es requerido'),
     }),
   });
   return (
@@ -38,14 +38,14 @@ const FormCalculate = ({ setDatos, setLoading, setTiempo }) => {
       <Header />
       <Formik
         initialValues={{
-          alquiler: "",
-          expensas: "",
-          años: "",
-          tipo_alquiler: "",
-          tipoAjuste: "",
-          porcentajeAjuste: "",
-          promo: "",
-          asesor: "",
+          alquiler: '',
+          expensas: '',
+          años: '',
+          tipo_alquiler: '',
+          tipoAjuste: '',
+          porcentajeAjuste: '',
+          promo: '',
+          asesor: '',
           iva: false,
           uno: false,
           tres: false,
@@ -55,12 +55,12 @@ const FormCalculate = ({ setDatos, setLoading, setTiempo }) => {
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
           localStorage.clear();
-          localStorage.setItem("datos", JSON.stringify(values));
+          localStorage.setItem('datos', JSON.stringify(values));
           setDatos(values);
           if (values.ml !== true) {
-            navigate("/template");
+            navigate('/template');
           } else {
-            navigate("/templateML");
+            navigate('/templateML');
           }
           resetForm();
         }}
@@ -93,7 +93,7 @@ const FormCalculate = ({ setDatos, setLoading, setTiempo }) => {
                     <div className="error">{errors.tipo_alquiler} </div>
                   )}
                 />
-                {values.tipo_alquiler === "comercial" && (
+                {values.tipo_alquiler === 'comercial' && (
                   <div className="group-comercial">
                     <div className="input-group">
                       <label htmlFor="tipoAjuste" className="label">
@@ -264,7 +264,7 @@ const FormCalculate = ({ setDatos, setLoading, setTiempo }) => {
                             disabled={values.ml && true}
                           />
                         }
-                        className={errors.uno && "switch-cuotas error-uno"}
+                        className={errors.uno && 'switch-cuotas error-uno'}
                         label="1 cuota"
                       />
 

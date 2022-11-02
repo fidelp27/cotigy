@@ -689,7 +689,7 @@ const PDFFile = () => {
                         <View style={styles.pagos}>
                           <Text
                             style={
-                              !elem.tresPagos.efectivo > 0
+                              !elem.tresPagos.transferencia > 0
                                 ? { color: 'white' }
                                 : styles.percentage
                             }
